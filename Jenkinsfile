@@ -9,12 +9,14 @@ pipeline {
 		stage('Generar la documentación') {
 			steps {
 				sh "doxygen"
+				sh "zip documentation.zip -r html/*"
 			}
 		}
 	}
 	post {
 		success {
 			publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'html/', reportFiles: 'files.html', reportName: 'Documentación', reportTitles: ''])
+                	archive 'documentation.zip'
 		}
 	}
 }
