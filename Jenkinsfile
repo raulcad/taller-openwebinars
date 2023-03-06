@@ -15,7 +15,7 @@ pipeline {
 		stage('Tests unitrios') {
 			steps {
 				sh 'make tests-xml'
-				junit 'tests/cmocka/*.xml'
+				junit 'reports/cmocka/*.xml'
 			}
 		}
 		stage('Análisis estático') {
